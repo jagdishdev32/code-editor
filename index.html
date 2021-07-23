@@ -31,7 +31,8 @@
 
 	<!-- Bottom Pane -->
 	<div class="bottom-pane">
-		<iframe src="" srcdoc="<h1>Hello world</h1>" frameborder="0"></iframe>
+		<iframe id="iframe-ele" srcdoc="<html><body><h1>Hello world</h1><script>alert('iframe')</script></body></html>"
+			sandbox="allow-popups allow-same-origin allow-scripts allow-forms" frameborder="none"></iframe>
 	</div>
 </body>
 
