@@ -7,19 +7,24 @@ let html, css, js;
 
 let initialHtml = `<h1>Welcome to code editor</h1>`;
 
-// On Changeing
+// On Change
 htmlEle.oninput = () => {
   html = htmlEle.value;
-  //   console.log("html", html);
-  setIframeContent(iframeEle, { html: html, css: css, js: js });
+  makeChanges();
+  updateLocalStorage();
+  //   setIframeContent(iframeEle, { html: html, css: css, js: js });
 };
 cssEle.oninput = () => {
   css = cssEle.value;
-  setIframeContent(iframeEle, { html: html, css: css, js: js });
+  makeChanges();
+  updateLocalStorage();
+  //   setIframeContent(iframeEle, { html: html, css: css, js: js });
 };
 jsEle.oninput = () => {
   js = jsEle.value;
-  setIframeContent(iframeEle, { html: html, css: css, js: js });
+  makeChanges();
+  updateLocalStorage();
+  //   setIframeContent(iframeEle, { html: html, css: css, js: js });
 };
 
 function setIframeContent(iframe, { html, css, js }) {
@@ -40,3 +45,32 @@ function setIframeContent(iframe, { html, css, js }) {
 }
 
 setIframeContent(iframeEle, { html: initialHtml, css: "", js: "" });
+
+// Make changes from 1 place
+function makeChanges() {
+  setIframeContent(iframeEle, { html: html, css: css, js: js });
+}
+
+// Checking if exists
+let htmlStorage = localStorage.getItem("html");
+let cssStorage = localStorage.getItem("css");
+let jsStorage = localStorage.getItem("js");
+
+// Updating value if value exists
+if (htmlStorage || cssStorage || jsStorage) {
+  html = htmlStorage;
+  css = cssStorage;
+  js = jsStorage;
+
+  htmlEle.value = html;
+  cssEle.value = css;
+  jsEle.value = js;
+
+  makeChanges();
+}
+
+function updateLocalStorage() {
+  localStorage.setItem("html", html);
+  localStorage.setItem("css", css);
+  localStorage.setItem("js", js);
+}
