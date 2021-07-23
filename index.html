@@ -11,8 +11,28 @@
 </head>
 
 <body>
-	<h1>Welcome to Code Editor</h1>
+	<!-- Top Pane -->
+	<div class="top-pane">
+		<div class="code-editors">
+			<div class="editor html-editor">
+				<h2 class="editor-title">HTML</h2>
+				<textarea name="html-editor" id="html-editor" placeholder="Html Here"></textarea>
+			</div>
+			<div class="editor css-editor">
+				<h2 class="editor-title">CSS</h2>
+				<textarea name="css-editor" id="css-editor" placeholder="css Here"></textarea>
+			</div>
+			<div class="editor js-editor">
+				<h2 class="editor-title">JavaScript</h2>
+				<textarea name="js-editor" id="js-editor" placeholder="js Here"></textarea>
+			</div>
+		</div>
+	</div>
 
+	<!-- Bottom Pane -->
+	<div class="bottom-pane">
+		<iframe src="" srcdoc="<h1>Hello world</h1>" frameborder="0"></iframe>
+	</div>
 </body>
 
 </html>
