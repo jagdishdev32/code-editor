@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Code Editor</title>
 	<link rel="stylesheet" href="style.css">
-	<script src="script.js"></script>
+	<script src="script.js" defer></script>
 </head>
 
 <body>
@@ -24,15 +24,15 @@
 			</div>
 			<div class="editor js-editor">
 				<h2 class="editor-title">JavaScript</h2>
-				<textarea name="js-editor" id="js-editor" placeholder="js Here"></textarea>
+				<textarea name="js-edutor" id="js-editor" placeholder="js Here"></textarea>
 			</div>
 		</div>
 	</div>
 
 	<!-- Bottom Pane -->
 	<div class="bottom-pane">
-		<iframe id="iframe-ele" srcdoc="<html><body><h1>Hello world</h1><script>alert('iframe')</script></body></html>"
-			sandbox="allow-popups allow-same-origin allow-scripts allow-forms" frameborder="none"></iframe>
+		<iframe sandbox="allow-popups allow-same-origin allow-scripts allow-forms allow-modals"
+			id="iframe-ele"></iframe>
 	</div>
 </body>
 
