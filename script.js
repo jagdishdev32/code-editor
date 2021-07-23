@@ -70,7 +70,7 @@ if (htmlStorage || cssStorage || jsStorage) {
 }
 
 function updateLocalStorage() {
-  localStorage.setItem("html", html);
-  localStorage.setItem("css", css);
-  localStorage.setItem("js", js);
+  localStorage.setItem("html", html || "");
+  localStorage.setItem("css", css || "");
+  localStorage.setItem("js", js || "");
 }
