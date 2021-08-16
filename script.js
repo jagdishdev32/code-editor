@@ -118,3 +118,15 @@ setInterval(() => {
     updateLocalStorage();
   }
 }, 2000);
+
+// Adding Caches
+// Checking if service worker supported by browser for caching site
+if ("serviceWorker" in navigator) {
+  // console.log('Service Worker Support');
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("../sw_cached_pages.js") // Create any file name and create file with that name
+      .then((reg) => console.log("Service Worker: Registered"))
+      .catch((err) => console.log(`Service Worker: Error: ${err}`));
+  });
+}
