@@ -1,4 +1,4 @@
-const cacheName = "v3";
+const cacheName = "v3.1";
 
 // let cacheAssets = ["index.html", "about.html", "/css/style.css", "/js/main.js"];
 // let cacheAssets = ["index.html"];
