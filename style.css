@@ -29,11 +29,12 @@
   width: 100%;
   height: 90%;
   resize: none;
+  padding: 10px;
 }
 
 .bottom-pane {
   flex: 1;
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   height: 50vh;
 }
 #iframe-ele {

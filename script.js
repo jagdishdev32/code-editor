@@ -30,6 +30,7 @@ jsEle.oninput = () => {
 function setIframeContent(iframe, { html, css, js }) {
   if (!html || html === "") {
     html = initialHtml;
+    htmlEle.placeholder = html;
   }
 
   const source = `
