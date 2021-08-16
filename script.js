@@ -10,11 +10,6 @@ let initialHtml = `
   <h1>Welcome to code editor</h1>
   <!-- <p>start coding now</p> -->
 `;
-let initialCss = `
-  body {
-    /* background-color: red; */
-  }
-`;
 
 // // On Change
 // htmlEle.onchange = () => {
@@ -38,7 +33,7 @@ let initialCss = `
 function setIframeContent(iframe, { html, css, js }) {
   if (!html || html === "") {
     html = initialHtml;
-    css = initialCss;
+    htmlEle.placeholder = html;
   }
 
   const source = `
@@ -53,7 +48,7 @@ function setIframeContent(iframe, { html, css, js }) {
   iframe.srcdoc = source;
 }
 
-setIframeContent(iframeEle, { html: initialHtml, css: initialCss, js: "" });
+setIframeContent(iframeEle, { html: initialHtml, css: "", js: "" });
 
 // Make changes from 1 place
 function makeChanges() {
