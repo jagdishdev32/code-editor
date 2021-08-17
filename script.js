@@ -1,4 +1,3 @@
-// Add Code Mirror
 const iframeEle = document.getElementById("iframe-ele");
 const htmlEle = document.getElementById("html-editor");
 const cssEle = document.getElementById("css-editor");
@@ -6,29 +5,7 @@ const jsEle = document.getElementById("js-editor");
 
 let html, css, js;
 
-let initialHtml = `
-  <h1>Welcome to code editor</h1>
-  <!-- <p>start coding now</p> -->
-`;
-
-// // On Change
-// htmlEle.onchange = () => {
-//   html = htmlEle.value;
-//   makeChanges();
-//   updateLocalStorage();
-// };
-
-// cssEle.onchange = () => {
-//   css = cssEle.value;
-//   makeChanges();
-//   updateLocalStorage();
-// };
-
-// jsEle.onchange = () => {
-//   js = jsEle.value;
-//   makeChanges();
-//   updateLocalStorage();
-// };
+let initialHtml = `<h1>Welcome to code editor</h1>`;
 
 function setIframeContent(iframe, { html, css, js }) {
   if (!html || html === "") {
@@ -62,7 +39,12 @@ let jsStorage = localStorage.getItem("js");
 
 // Updating value if value exists
 if (htmlStorage || cssStorage || jsStorage) {
-  html = htmlStorage;
+  if (!htmlStorage || htmlStorage == "") {
+    html = initialHtml;
+  } else {
+    html = htmlStorage;
+  }
+
   css = cssStorage;
   js = jsStorage;
 
@@ -71,6 +53,9 @@ if (htmlStorage || cssStorage || jsStorage) {
   jsEle.value = js;
 
   makeChanges();
+} else if (htmlEle.value == "") {
+  htmlEle.value = initialHtml;
+  html = initialHtml;
 }
 
 function updateLocalStorage() {
@@ -79,23 +64,52 @@ function updateLocalStorage() {
   localStorage.setItem("js", js || "");
 }
 
-let htmlCodeMirror = CodeMirror.fromTextArea(htmlEle, {
-  mode: "xml",
+function checkIfMobile() {
+  if (window.innerWidth < 800) {
+    return true;
+  }
+  return false;
+}
+
+// Objects for CodeMirror Properties / Features
+let defaultObject = {
   theme: "dracula",
-  lineNumbers: true,
+  // Fixing delete line glitch for mobiles
+  lineNumbers: checkIfMobile() ? false : true,
+  lineWrapping: true,
+  autoCloseBrackets: true,
+  inputStyle: "contenteditable",
+  showCursorWhenSelecting: true,
+};
+
+let htmlObject = {
+  mode: "htmlmixed",
   value: htmlEle.value,
+  autoCloseTags: true,
+};
+
+let cssObject = {
+  mode: "css",
+};
+
+let jsObject = {
+  mode: "javascript",
+};
+
+// Code Mirror Objects
+let htmlCodeMirror = CodeMirror.fromTextArea(htmlEle, {
+  ...defaultObject,
+  ...htmlObject,
 });
 
 let cssCodeMirror = CodeMirror.fromTextArea(cssEle, {
-  mode: "css",
-  theme: "dracula",
-  lineNumbers: true,
+  ...defaultObject,
+  ...cssObject,
 });
 
 let jsCodeMirror = CodeMirror.fromTextArea(jsEle, {
-  mode: "javascript",
-  theme: "dracula",
-  lineNumbers: true,
+  ...defaultObject,
+  ...jsObject,
 });
 
 // updating values on change
